@@ -1,8 +1,8 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
-import { save } from './../src/controller/category.controller';
-
+import CategoryRouter from './router/cantegory.router';
+import ProductRouter from './router/product.router';
 
 dotenv.config();
 const app = express();
@@ -19,7 +19,9 @@ const main = async () => {
         res.send('Hola mundo');
     });
 
-    app.post('/category', save);
+    // usa esta lista de rutas
+    app.use('/api',CategoryRouter);
+    app.use('/api',ProductRouter);
 
     app.listen(process.env.PORT, () => {
         console.log(`app listening at port ${process.env.PORT}`)

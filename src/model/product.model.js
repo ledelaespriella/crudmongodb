@@ -1,4 +1,4 @@
-import { Schema, model } from 'mongoose';
+import { Schema, model, ObjectId } from 'mongoose';
 
 const ProductSchema = new Schema({
     nombre: String, // String is shorthand for {type: String}
@@ -18,4 +18,4 @@ const ProductSchema = new Schema({
     ],
 });
 
-export default model('Lot', ProductSchema);
+export default model('Product', ProductSchema);
