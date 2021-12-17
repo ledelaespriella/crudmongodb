@@ -7,12 +7,14 @@ import {
   remove,
 } from '../controller/category.controller';
 
+import { authMiddleware } from './../middleware/auth.middleware';
+
 const app = Router();
 
-app.get('/category', index);
-app.post('/category', save);
-app.get('/category/:categoryId', edit);
-app.put('/category/:categoryId', update);
-app.delete('/category/:categoryId', remove);
+app.get('/category', authMiddleware, index);
+app.post('/category', authMiddleware, save);
+app.get('/category/:categoryId', authMiddleware, edit);
+app.put('/category/:categoryId', authMiddleware, update);
+app.delete('/category/:categoryId', authMiddleware, remove);
 
 export default app;

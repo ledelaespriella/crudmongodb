@@ -1,8 +1,10 @@
 import express from 'express';
 import dotenv from 'dotenv';
 import mongoose from 'mongoose';
+import cors from 'cors';
 import CategoryRouter from './router/cantegory.router';
 import ProductRouter from './router/product.router';
+import UserRouter from './router/user.router';
 
 dotenv.config();
 const app = express();
@@ -14,14 +16,16 @@ const main = async () => {
 
     //se parsea todo lo que llega en formato json
     app.use(express.json());
+    app.use(cors());
 
     app.get('/', (req, res) => {
         res.send('Hola mundo');
     });
 
     // usa esta lista de rutas
-    app.use('/api',CategoryRouter);
-    app.use('/api',ProductRouter);
+    app.use('/api', CategoryRouter);
+    app.use('/api', ProductRouter);
+    app.use('/api', UserRouter);
 
     app.listen(process.env.PORT, () => {
         console.log(`app listening at port ${process.env.PORT}`)
