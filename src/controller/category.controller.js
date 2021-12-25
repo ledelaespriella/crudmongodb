@@ -1,20 +1,29 @@
 import CategoryModel from './../model/category.model';
+import LotModel from './../model/lot.model';
 
 const index = async (req, res) => {
   try {
     const data = await CategoryModel.find({});
-    return res.json({ status: true, results: data });
+    return res.json({ status: true, items: data });
   } catch (err) {
     return res.json({ status: false, errors: err.message });
   }
 };
+
+const indexLot = async (req, res) => {
+  try {
+    const data = await LotModel.find({});
+    return res.json({ status: true, items: data });
+  } catch (err) {
+    return res.json({ status: false, errors: err.message });
+  }
+}
 
 const save = async (req, res) => {
   try {
     const data = req.body;
     const model = new CategoryModel(data);
     await model.save();
-    console.log('guardo');
     return res.json({ status: true });
   } catch (err) {
     return res.json({ status: false, errors: err.message });
@@ -52,4 +61,4 @@ const remove = async (req, res) => {
   }
 };
 
-export { index, save, edit, update, remove };
+export { index, save, edit, update, remove, indexLot };

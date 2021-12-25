@@ -1,8 +1,8 @@
-import { Schema, model, ObjectId } from 'mongoose';
+import { Schema, model} from 'mongoose';
 
 const ProductSchema = new Schema({
   nombre: String, // String is shorthand for {type: String}
-  category_id: { type: ObjectId, ref: 'Category' }, // String is shorthand for {type: String}
+  category_id: { type: Schema.Types.ObjectId, ref: 'Category' }, // String is shorthand for {type: String}
   size: {
     widht: Number,
     height: Number,
@@ -13,7 +13,7 @@ const ProductSchema = new Schema({
     {
       name: String,
       description: String,
-      lot_id: { type: ObjectId, ref: 'Lot' },
+      lot_id: { type: Schema.Types.ObjectId, ref: 'Lot' },
     },
   ],
 });

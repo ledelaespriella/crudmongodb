@@ -1,7 +1,7 @@
 import { Schema, model } from 'mongoose';
 
 const CategorySchema = new Schema({
-  nombre: String, // String is shorthand for {type: String}
+  nombre: {type: String, required: true}, // String is shorthand for {type: String}
   state: { type: Boolean, default: true }, //
 });
 

@@ -1,12 +1,11 @@
 import ProductModel from './../model/product.model';
-import LotModel from './../model/lot.model';
 
 const index = async (req, res) => {
   try {
     const data = await ProductModel.find({})
       .populate('category_id')
       .populate('featurs.lot_id');
-    return res.json({ status: true, results: data });
+    return res.json({ status: true, items: data });
   } catch (err) {
     return res.json({ status: false, errors: err.message });
   }
@@ -17,7 +16,6 @@ const save = async (req, res) => {
     const data = req.body;
     const model = new ProductModel(data);
     await model.save();
-    console.log('guardo');
     return res.json({ status: true });
   } catch (err) {
     return res.json({ status: false, errors: err.message });
@@ -30,7 +28,7 @@ const edit = async (req, res) => {
     const category = await ProductModel.findById(params.productId)
       .populate('category_id')
       .populate('featurs.lot_id');
-    return res.json({ status: true, data: category });
+    return res.json({ status: true, item: category });
   } catch (err) {
     return res.json({ status: false, errors: err.message });
   }
